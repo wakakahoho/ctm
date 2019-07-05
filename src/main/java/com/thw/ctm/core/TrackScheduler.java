@@ -36,7 +36,6 @@ public abstract class TrackScheduler<T extends TrackEvent> {
     }
 
 
-    //TODO change to private
     public Conference schedule(List<T> events) {
         logger.debug("start schedule,got {} event", events.size());
         List<Track> tracks = buildTracks(events);

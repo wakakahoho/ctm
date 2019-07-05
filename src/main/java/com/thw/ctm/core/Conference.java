@@ -44,7 +44,7 @@ public class Conference {
             sb.append("\n");
             sb.append(String.format("Track %d:\n", i + 1));
             tracks.get(i).getSessions().forEach(session -> {
-                List<TrackEvent> events = session.getEvents();
+                List<TrackEvent> events = session.getAllEvents();
                 events.forEach(event -> {
                     sb.append(ConferenceUtil.formatterToApm.format(event.getTime()));
                     if (event instanceof TalkEvent) {

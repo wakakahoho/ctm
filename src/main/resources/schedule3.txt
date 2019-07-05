@@ -1,0 +1,7 @@
+Overdoing it in Python 45min
+Lua for the Masses 30min
+Common Ruby Errors 45min
+Rails for Python Developers lightning
+Woah 30min
+Sit Down and Write 30min
+Pair Programming vs Noise 45min

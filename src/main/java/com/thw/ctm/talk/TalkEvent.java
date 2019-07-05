@@ -33,7 +33,7 @@ public class TalkEvent extends TrackEvent {
     @Override
     public String toString() {
         return "TalkEvent{" +
-            "durationUnit=" + durationUnit +"title="+this.getTitle()+
+            "duration=" + duration() +"  title="+this.getTitle()+
             '}';
     }
 }

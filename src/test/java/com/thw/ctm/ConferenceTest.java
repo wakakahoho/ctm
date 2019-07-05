@@ -24,9 +24,9 @@ public class ConferenceTest {
         String format = ConferenceUtil.formatDoubleToTime(20.12);
         Assert.assertEquals("08:12 PM", format);
     }
-
+    //only check the schedule layer
     @Test
-    public void test1() {
+    public void testSchedule() {
         List<TalkEvent> nodes = new ArrayList<>();
         nodes.add(new TalkEvent("1", 60, DurationUnit.MINUTES));
         nodes.add(new TalkEvent("2",  45,DurationUnit.MINUTES));
@@ -53,11 +53,24 @@ public class ConferenceTest {
         conference.print();
     }
 
-    @Test
-    public void test2(){
+    private void  runConference(String file){
         TrackScheduler<TalkEvent> talkTrackScheduler = new TalkTrackScheduler();
-        talkTrackScheduler.setEventLoader(new TrackEventEventLoader("schedule1.txt"));
+        talkTrackScheduler.setEventLoader(new TrackEventEventLoader(file));
         Conference conference = talkTrackScheduler.run();
         conference.print();
+    }
+    @Test
+    public void testAllProcess(){
+        runConference("schedule1.txt");
+    }
+
+    @Test
+    public void testPartOfInput(){
+        runConference("schedule2.txt");
+    }
+
+    @Test
+    public void testNotFullDay(){
+        runConference("schedule3.txt");
     }
 }

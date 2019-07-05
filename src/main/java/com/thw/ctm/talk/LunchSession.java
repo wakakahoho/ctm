@@ -7,20 +7,17 @@ import com.thw.ctm.core.event.TrackEvent;
 import com.thw.ctm.core.session.AbstractSession;
 
 /**
- * @author duanxiang 2019/7/4 11:34
+ * @author duanxiang 2019/7/4 11:34 LunchSession
  **/
-public class LunchSession extends AbstractSession<TalkEvent> {
+public class LunchSession extends AbstractSession<TrackEvent> {
+
     public LunchSession(int startTime, int endTime) {
         super(startTime, endTime);
     }
 
-    @Override
-    protected boolean add(TalkEvent event) {
-        return false;
-    }
 
     @Override
-    protected List<TrackEvent> addAfter() {
+    protected List<TrackEvent> postHandle() {
         TrackEvent event = new TrackEvent("Lunch");
         event.setTime(this.getCurrentTime());
         return Collections.singletonList(event);

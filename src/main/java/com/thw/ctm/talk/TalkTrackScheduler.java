@@ -54,9 +54,9 @@ public class TalkTrackScheduler extends TrackScheduler<TalkEvent> {
 
     private Track getTrack(boolean isMaxLength) {
         Track track = new Track();
-        TalkSession morningSession = new TalkSession(START_TIME, LUNCH_TIME);
+        SmartTalkSession morningSession = new SmartTalkSession(START_TIME, LUNCH_TIME);
         LunchSession lunchSession = new LunchSession(LUNCH_TIME, LUNCH_TIME_END);
-        TalkSession afterNoonSession = new TalkSession(LUNCH_TIME_END, isMaxLength ? NETWORK_EVENT_TIME_LAST : NETWORK_EVENT_TIME_FIRST);
+        SmartTalkSession afterNoonSession = new SmartTalkSession(LUNCH_TIME_END, isMaxLength ? NETWORK_EVENT_TIME_LAST : NETWORK_EVENT_TIME_FIRST);
         track.addSession(morningSession);
         track.addSession(lunchSession);
         track.addSession(afterNoonSession);
