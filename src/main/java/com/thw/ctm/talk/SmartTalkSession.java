@@ -37,7 +37,7 @@ public class SmartTalkSession extends TalkSession {
         @Override
         public void process(List<TalkEvent> events) {
             smartSessionResult = new ArrayList<>();
-            List<TalkEvent> talkEvents = events.stream().sorted(Comparator.comparing(TalkEvent::duration)).collect(Collectors.toList());
+            List<TalkEvent> talkEvents = events.stream().filter(TrackEvent::isHandled).sorted(Comparator.comparing(TalkEvent::duration)).collect(Collectors.toList());
             if (talkEvents.isEmpty()) {
                 return;
             }
@@ -46,9 +46,9 @@ public class SmartTalkSession extends TalkSession {
             logger.info("found {} matches", smartSessionResult.size());
             Random random = new Random();
             if(!smartSessionResult.isEmpty()){
-                super.process(smartSessionResult.get(random.nextInt(smartSessionResult.size())));
+                List<TalkEvent> talkEvents1 = smartSessionResult.get(random.nextInt(smartSessionResult.size()));
+                super.process(talkEvents1);
             }
-            super.process(events);
         }
 
         private void group(List<TalkEvent> talkEvents, int l, int target, List<TalkEvent> list) {

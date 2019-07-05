@@ -18,7 +18,7 @@ public class Track {
         sessions = new ArrayList<>();
     }
 
-    public SessionTask nextSession() {
+    public AbstractSession nextSession() {
         if (currentIndex < sessions.size() && this.sessions.get(currentIndex).notFull()) {
             return this.sessions.get(currentIndex++);
         }

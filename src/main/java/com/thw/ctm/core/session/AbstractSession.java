@@ -94,10 +94,9 @@ public abstract class AbstractSession<T extends TrackEvent> implements SessionTa
             if (Objects.nonNull(preHandle())) {
                 this.events.addAll(preHandle());
             }
-            List<T> eventList = new ArrayList<>(events);
             Collections.reverse(sessionStrategies);
             for (SessionStrategy sessionStrategy : sessionStrategies) {
-                sessionStrategy.process(eventList);
+                sessionStrategy.process(events);
             }
             if (Objects.nonNull(postHandle())) {
                 this.events.addAll(postHandle());
