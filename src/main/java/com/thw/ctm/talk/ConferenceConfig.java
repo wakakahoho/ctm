@@ -11,7 +11,6 @@ public class ConferenceConfig {
     public static final boolean LUNCH_EVENT_ENABLED = true;
     public static final int LUNCH_TIME = 12;
     public static final int LUNCH_TIME_END = 13;
-    public static final int LUNCH_DURATION = 60;
 
 
 

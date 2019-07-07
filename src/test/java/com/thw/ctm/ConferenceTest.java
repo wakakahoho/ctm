@@ -59,16 +59,17 @@ public class ConferenceTest {
         Conference conference = talkTrackScheduler.run();
         conference.print();
     }
+    //full
     @Test
     public void testAllProcess(){
         runConference("schedule1.txt");
     }
-
+    //just part of input
     @Test
     public void testPartOfInput(){
         runConference("schedule2.txt");
     }
-
+    // just choose little input
     @Test
     public void testNotFullDay(){
         runConference("schedule3.txt");

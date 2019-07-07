@@ -22,16 +22,20 @@ import com.thw.ctm.talk.ConferenceConfig;
  **/
 public abstract class AbstractSession<T extends TrackEvent> implements SessionTask<T> {
 
-    //default group 0
     private static final Logger logger = LogManager.getLogger(AbstractSession.class);
+
+    private String sessionName;
+
     private LocalTime currentTime;
     private int remainTime;
     private List<SessionStrategy> sessionStrategies;
     private List<TrackEvent> events;
 
 
-    public AbstractSession(int startTime, int endTime) {
+    public AbstractSession(String sessionName,int startTime, int endTime) {
+
         validate(startTime, endTime);
+        this.sessionName = sessionName;
         remainTime = (endTime - startTime) * ConferenceConfig.MIN_OF_HOUR;
         currentTime = LocalTime.of(startTime, 0);
         events = new ArrayList<>();
@@ -132,6 +136,10 @@ public abstract class AbstractSession<T extends TrackEvent> implements SessionTa
     public void setCurrentTime(int duration) {
         currentTime = currentTime.plusMinutes(duration);
 
+    }
+
+    public String getName(){
+        return sessionName;
     }
 
 
