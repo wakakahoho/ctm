@@ -34,6 +34,9 @@ public class TalkTrackScheduler extends TrackScheduler<TalkEvent> {
             return Collections.emptyList();
         }
         List<Track> tracks = new ArrayList<>();
+
+        //calculate numbers of task according to totalTime of task
+        //and create session of the track
         int totalTime = 0;
         for (TrackEvent event : events) {
             if (event instanceof TalkEvent) {
@@ -52,11 +55,17 @@ public class TalkTrackScheduler extends TrackScheduler<TalkEvent> {
         return tracks;
     }
 
+    /**
+     * group session
+     * @param isMaxLength whether the afternoon time is 14 or 17
+     * @return
+     */
     private Track getTrack(boolean isMaxLength) {
         Track track = new Track();
-        SmartTalkSession morningSession = new SmartTalkSession(START_TIME, LUNCH_TIME);
-        LunchSession lunchSession = new LunchSession(LUNCH_TIME, LUNCH_TIME_END);
-        SmartTalkSession afterNoonSession = new SmartTalkSession(LUNCH_TIME_END, isMaxLength ? NETWORK_EVENT_TIME_LAST : NETWORK_EVENT_TIME_FIRST);
+        SmartTalkSession morningSession = new SmartTalkSession("morning",START_TIME, LUNCH_TIME);
+        // lunchSession is simple
+        LunchSession lunchSession = new LunchSession("lunch",LUNCH_TIME, LUNCH_TIME_END);
+        SmartTalkSession afterNoonSession = new SmartTalkSession("afternoon",LUNCH_TIME_END, isMaxLength ? NETWORK_EVENT_TIME_LAST : NETWORK_EVENT_TIME_FIRST);
         track.addSession(morningSession);
         track.addSession(lunchSession);
         track.addSession(afterNoonSession);

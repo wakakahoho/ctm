@@ -8,11 +8,12 @@ import com.thw.ctm.core.session.AbstractSession;
 
 /**
  * @author duanxiang 2019/7/4 11:34 LunchSession
+ * just add fixed event.
  **/
 public class LunchSession extends AbstractSession<TrackEvent> {
 
-    public LunchSession(int startTime, int endTime) {
-        super(startTime, endTime);
+    public LunchSession(String sessionName,int startTime, int endTime) {
+        super(sessionName,startTime, endTime);
     }
 
 
