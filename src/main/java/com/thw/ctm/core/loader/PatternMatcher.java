@@ -10,9 +10,9 @@ public interface PatternMatcher {
 
     /**
      * from string to TrackEvent
-     * @param s
+     * @param line
      * @return
      */
-    TrackEvent build(String s);
+    TrackEvent build(String line);
 
 }

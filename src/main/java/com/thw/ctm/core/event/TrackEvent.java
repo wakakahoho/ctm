@@ -12,8 +12,6 @@ public class TrackEvent {
     private String title;
     private volatile boolean handled = false;
 
-
-
     public TrackEvent() {
 
     }

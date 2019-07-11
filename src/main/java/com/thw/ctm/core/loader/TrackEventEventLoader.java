@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.thw.ctm.core.TrackScheduler;
 import com.thw.ctm.core.enums.DurationUnit;
 import com.thw.ctm.core.event.TrackEvent;
 import com.thw.ctm.talk.TalkEvent;
@@ -21,7 +20,7 @@ import static com.thw.ctm.talk.ConferenceConfig.EVENT_NAME_INDEX;
  **/
 public class TrackEventEventLoader extends ClassPathEventLoader {
 
-    private static final Logger logger = LogManager.getLogger(TrackScheduler.class);
+    private static final Logger logger = LogManager.getLogger(TrackEventEventLoader.class);
 
     public TrackEventEventLoader(String fileName) {
         Objects.requireNonNull(fileName);
@@ -54,9 +53,9 @@ public class TrackEventEventLoader extends ClassPathEventLoader {
             if (durationInString == null) {
                 durationInString = "1";
             }
-             int duration = Integer.parseInt(durationInString);
+            int duration = Integer.parseInt(durationInString);
 
-            return new TalkEvent(title,duration,unit);
+            return new TalkEvent(title, duration, unit);
         }
     }
 }

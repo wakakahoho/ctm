@@ -22,7 +22,6 @@ import com.thw.ctm.core.event.TrackEvent;
  **/
 public class ClassPathEventLoader implements EventLoader<TrackEvent> {
 
-
     private static final Logger logger = LogManager.getLogger(TrackScheduler.class);
     private String fileName;
     private PatternMatcher patternMatcher;
