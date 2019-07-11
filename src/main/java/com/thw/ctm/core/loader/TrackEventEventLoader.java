@@ -20,21 +20,14 @@ import static com.thw.ctm.talk.ConferenceConfig.EVENT_NAME_INDEX;
  **/
 public class TrackEventEventLoader extends ClassPathEventLoader {
 
+    private static final Pattern PATTERN = Pattern.compile(
+        "^(.+)\\s(\\d+)?\\s?((min)|(lightning))$");
+
     private static final Logger logger = LogManager.getLogger(TrackEventEventLoader.class);
 
     public TrackEventEventLoader(String fileName) {
-        Objects.requireNonNull(fileName);
-        setFileName(fileName);
-        setPatternMatcher(new TrackEventPathMatcher());
-    }
-
-    static class TrackEventPathMatcher implements PatternMatcher {
-
-        public static final Pattern PATTERN = Pattern.compile(
-            "^(.+)\\s(\\d+)?\\s?((min)|(lightning))$");
-
-        @Override
-        public TrackEvent build(String line) {
+        setFileName(Objects.requireNonNull(fileName,"fileName can't be null"));
+        setPatternMatcher(line -> {
             Matcher match = PATTERN.matcher(line);
             if (!match.find()) {
                 logger.warn("error in parse line {}", line);
@@ -56,6 +49,37 @@ public class TrackEventEventLoader extends ClassPathEventLoader {
             int duration = Integer.parseInt(durationInString);
 
             return new TalkEvent(title, duration, unit);
-        }
+        });
     }
+
+//    static class TrackEventPathMatcher implements PatternMatcher {
+//
+//        public static final Pattern PATTERN = Pattern.compile(
+//            "^(.+)\\s(\\d+)?\\s?((min)|(lightning))$");
+//
+//        @Override
+//        public TrackEvent build(String line) {
+//            Matcher match = PATTERN.matcher(line);
+//            if (!match.find()) {
+//                logger.warn("error in parse line {}", line);
+//                return null;
+//            }
+//            //for title
+//            String title = match.group(EVENT_NAME_INDEX);
+//            // duration
+//            DurationUnit unit;
+//            if (match.group(EVENT_DURATION_UNIT_INDEX).equalsIgnoreCase("min")) {
+//                unit = DurationUnit.MINUTES;
+//            } else {
+//                unit = DurationUnit.LIGHTENING;
+//            }
+//            String durationInString = match.group(EVENT_DURATION_INDEX);
+//            if (durationInString == null) {
+//                durationInString = "1";
+//            }
+//            int duration = Integer.parseInt(durationInString);
+//
+//            return new TalkEvent(title, duration, unit);
+//        }
+//    }
 }

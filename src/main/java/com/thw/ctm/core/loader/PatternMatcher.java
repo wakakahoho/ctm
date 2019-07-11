@@ -6,6 +6,7 @@ import com.thw.ctm.core.event.TrackEvent;
  * @author duanxiang 2019/7/4 16:18
  *
  **/
+@FunctionalInterface
 public interface PatternMatcher {
 
     /**
