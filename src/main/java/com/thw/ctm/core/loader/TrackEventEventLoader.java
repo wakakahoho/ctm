@@ -51,35 +51,4 @@ public class TrackEventEventLoader extends ClassPathEventLoader {
             return new TalkEvent(title, duration, unit);
         });
     }
-
-//    static class TrackEventPathMatcher implements PatternMatcher {
-//
-//        public static final Pattern PATTERN = Pattern.compile(
-//            "^(.+)\\s(\\d+)?\\s?((min)|(lightning))$");
-//
-//        @Override
-//        public TrackEvent build(String line) {
-//            Matcher match = PATTERN.matcher(line);
-//            if (!match.find()) {
-//                logger.warn("error in parse line {}", line);
-//                return null;
-//            }
-//            //for title
-//            String title = match.group(EVENT_NAME_INDEX);
-//            // duration
-//            DurationUnit unit;
-//            if (match.group(EVENT_DURATION_UNIT_INDEX).equalsIgnoreCase("min")) {
-//                unit = DurationUnit.MINUTES;
-//            } else {
-//                unit = DurationUnit.LIGHTENING;
-//            }
-//            String durationInString = match.group(EVENT_DURATION_INDEX);
-//            if (durationInString == null) {
-//                durationInString = "1";
-//            }
-//            int duration = Integer.parseInt(durationInString);
-//
-//            return new TalkEvent(title, duration, unit);
-//        }
-//    }
 }
